@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  margin: 20% 0 20% 0;
+  height: 576px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+div.col {
+  margin: 0;
+  /* padding: 40px; */
+  display: flex;
+  border: 1px solid red;
+  width: 70px;
+  height: 70px;
+}
+
+div.row {
+  display: flex;
+  width: 576px;
+}

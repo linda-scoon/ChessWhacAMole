@@ -5,7 +5,7 @@ body {
 
 main {
   margin: 20% 0 20% 0;
-  height: 576px;
+  height: 578px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,14 +13,14 @@ main {
 
 div.col {
   margin: 0;
-  /* padding: 40px; */
   display: flex;
-  border: 1px solid red;
+  border: 1px groove rgb(126, 89, 8);
+  background-color:rgb(253, 213, 149);
   width: 70px;
   height: 70px;
 }
 
 div.row {
   display: flex;
-  width: 576px;
+  width: 578px;
 }

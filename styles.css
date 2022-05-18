@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  margin: 20% 0 20% 0;
+  height: 578px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+div.col {
+  margin: 0;
+  display: flex;
+  border: 1px groove rgb(126, 89, 8);
+  background-color: rgb(253, 213, 149);
+  width: 70px;
+  height: 70px;
+}
+
+div.row {
+  display: flex;
+  width: 578px;
+}

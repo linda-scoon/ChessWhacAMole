@@ -1,28 +1,28 @@
-export class Board {
+export default class Board {
   pieceArray = new Array();
   pieceIDArray = new Array();
   counter = 0;
   
   constructor() {}
   addPiece(piece) {
-    pieceArray.push(piece);
-    pieceIDArray[counter] = counter;
-    counter++;
+    this.pieceArray.push(piece);
+    this.pieceIDArray[this.counter] = this.counter;
+    this.counter++;
   }
 
   getPieceArray() {
-    return pieceArray;
+    return this.pieceArray;
   }
 
   getPiece(index) {
-    return pieceArray[index];
+    return this.pieceArray[index];
   }
 
   getCounter() {
-    return counter;
+    return this.counter;
   }
 
   getPieceIDArray() {
-    return pieceIDArray;
+    return this.pieceIDArray;
   }
 }

@@ -25,8 +25,8 @@ let bishop = new Bishop();
 // board.addPiece(king);
 // board.addPiece(pawn);
 // board.addPiece(queen);
-board.addPiece(rook);
-// board.addPiece(bishop);
+// board.addPiece(rook);
+board.addPiece(bishop);
 
 function startGame() {
   placeTarget();
@@ -76,7 +76,6 @@ function displayPieces() {
     piece.col = col;
 
     document.querySelector("#" + piece.col + piece.row).appendChild(piece.img);
-    //piece.checkMoves(piece.col, piece.row);
   });
 }
 

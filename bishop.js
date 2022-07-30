@@ -30,7 +30,7 @@ export default class Queen extends chessPiece {
     if (left >= this.aAscii) {
       // if column is valid then position is allowed move
       left = String.fromCharCode(left);
-      allowedMoves.set("left", left + row);
+      this.allowedMoves.set("left", left + row);
     }
   }
 
@@ -42,7 +42,7 @@ export default class Queen extends chessPiece {
 
     if (right <= this.hAscii) {
       right = String.fromCharCode(right);
-      allowedMoves.set("right", right + row);
+      this.allowedMoves.set("right", right + row);
     }
   }
 
@@ -52,7 +52,7 @@ export default class Queen extends chessPiece {
     let down = parseInt(row) - downSteps;
 
     if (down > 0) {
-      allowedMoves.set("down", col + down);
+      this.allowedMoves.set("down", col + down);
     }
   }
 
@@ -64,8 +64,8 @@ export default class Queen extends chessPiece {
 
     if (up <= this.boardSize) {
       // TRUE - if the value of UP is less than, or equal to, 8 (which is the maximum number of rows on a chessboard).
-      allowedMoves.set("Bishop up", up, col);
-      allowedMoves.set("up", col + up);
+      this.allowedMoves.set("Bishop up", up, col);
+      this.allowedMoves.set("up", col + up);
     }
   }
 
@@ -73,7 +73,7 @@ export default class Queen extends chessPiece {
    * Checks piece's current available moves
    */
   checkMoves(col, row) {
-    allowedMoves.clear();
+    this.allowedMoves.clear();
     //up
     this.up(row, col);
 

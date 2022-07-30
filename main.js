@@ -26,7 +26,7 @@ let bishop = new Bishop();
 // board.addPiece(pawn);
 // board.addPiece(queen);
 // board.addPiece(rook);
-board.addPiece(bishop);
+// board.addPiece(bishop);
 
 function startGame() {
   placeTarget();

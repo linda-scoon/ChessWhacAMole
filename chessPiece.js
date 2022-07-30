@@ -1,9 +1,4 @@
 export default class chessPiece {
-  allowedMoves;
-  aAscii = 97;
-  hAscii = 104;
-  boardSize = 8;
-  img;
 
   constructor(name) {
     this.img = document.createElement("img");

@@ -7,39 +7,21 @@ export default class Knight extends chessPiece {
   allowedMoves = new Map();
   constructor() {
     super("knight");
-
-    this.img = document.createElement("img");
-    this.img.draggable = true;
-    this.img.id = "knight";
     this.img.src = "img/blackKnight.webp";
     this.row;
     this.col;
-  }
-
-  getAllowedMovesKnight() {
-    return this.allowedMoves;
-  }
-
-  getKnightName() {
-    return "knight";
   }
 
   left(row, col) {
     let verticalSteps = 1;
     let sideSteps = 2;
 
-    let left = col.charCodeAt(0); //converts the letter from 'a' to 'h' (denoting column) to ASCII equivalent (numbers from 97 to 104).
-
-    // 2 steps left (subtraction)
+    let left = col.charCodeAt(0);
     left = left - sideSteps;
-
-    //up
     let up = parseInt(row) + verticalSteps;
-    //down
     let down = parseInt(row) - verticalSteps;
 
     if (left >= this.aAscii) {
-      // if column - moves
       left = String.fromCharCode(left);
       if (up <= this.boardSize) {
         this.allowedMoves.set("leftUp", left + up);
@@ -55,13 +37,8 @@ export default class Knight extends chessPiece {
     let sideSteps = 2;
 
     let right = col.charCodeAt(0);
-    // 2 steps right (addition)
     right = right + sideSteps;
-
-    //up
     let up = parseInt(row) + verticalSteps;
-
-    //down
     let down = parseInt(row) - verticalSteps;
 
     if (right <= this.hAscii) {
@@ -82,12 +59,8 @@ export default class Knight extends chessPiece {
 
     // 2 steps/rows down
     let down = parseInt(row) - downSteps;
-
-    // left
     let left = col.charCodeAt(0);
     left = left - sideSteps;
-
-    //right
     let right = col.charCodeAt(0);
     right = right + sideSteps;
 
@@ -103,30 +76,39 @@ export default class Knight extends chessPiece {
     }
   }
 
+  /**
+   * (1) a knight's upward movement would require going 2 rows upwards
+   * (2) it would also include moving a step/column to either the left or right direction.
+   * (3) 2 steps upward (current_piece_row + add_2_rows)
+   * (4) 1 step to the right (current_piece_row + add_1_col)
+   * (5) we convert letters a to h into ASCII equivalent and pass to 'right' letiable.
+   * (6) add 1 to column ASCII value.
+   * (7) 1 step to the left (current_piece_row + minus_1_col)
+   * (8) minus 1 from column ASCII value
+   * (9) up <= this.boardSize is TRUE - if the value of UP is less than, or equal to, 8
+   *     (which is the maximum number of rows on a chessboard).
+   * (10) left >= this.aAscii is TRUE - if left greater than or equal to 97 (a in ASCII)
+   * (11) Turning left back into a string
+   * (12) Add to list of allowed moves
+   * (13) right <= this.hAscii is TRUE - if right less than or equal to 104 (h in ASCII)
+   * @param {number} row
+   * @param {string} col
+   */
   up(row, col) {
-    let upSteps = 2; // a knight's upward movement would require going 2 rows upwards
-    let sideSteps = 1; // it would also include moving a step/column to either the left or right direction.
-
-    // 2 steps upward (current_piece_row + add_2_rows)
-    let up = parseInt(row) + upSteps;
-
-    // 1 step to the right (current_piece_row + add_1_col)
-    let right = col.charCodeAt(0); // we convert letters a to h into ASCII equivalent and pass to 'right' letiable.
-    right = right + sideSteps; // add 1 to column ASCII value.
-
-    // 1 step to the left (current_piece_row + minus_1_col)
-    let left = col.charCodeAt(0);
-    left = left - sideSteps; // minus 1 from column ASCII value.
+    let upSteps = 2; // (1)
+    let sideSteps = 1; // (2)
+    let up = parseInt(row) + upSteps; // (3)
+    let right = col.charCodeAt(0); // [4,5]
+    right = right + sideSteps; // (6)
+    let left = col.charCodeAt(0); // (7)
+    left = left - sideSteps; // (8)
 
     if (up <= this.boardSize) {
-      // TRUE - if the value of UP is less than, or equal to, 8 (which is the maximum number of rows on a chessboard).
       if (left >= this.aAscii) {
-        // TRUE - if left greater than or equal to 97 (a in ASCII)
-        left = String.fromCharCode(left); // Turning left back into a string
-        this.allowedMoves.set("upLeft", left + up); // Add to list of allowed moves
+        left = String.fromCharCode(left); // (11)
+        this.allowedMoves.set("upLeft", left + up); // (12)
       }
       if (right <= this.hAscii) {
-        // TRUE - if right less than or equal to 104 (h in ASCII)
         right = String.fromCharCode(right);
         this.allowedMoves.set("upRight", right + up);
       }

@@ -1,29 +1,28 @@
-let pieceArray = new Array();
-let pieceIDArray = new Array();
-let counter = 0;
-
 export default class Board {
+  pieceArray = new Array();
+  pieceIDArray = new Array();
+  counter = 0;
+  
   constructor() {}
-}
+  addPiece(piece) {
+    this.pieceArray.push(piece);
+    this.pieceIDArray[this.counter] = this.counter;
+    this.counter++;
+  }
 
-export function addPiece(piece) {
-  pieceArray.push(piece);
-  pieceIDArray[counter] = counter;
-  counter++;
-}
+  getPieceArray() {
+    return this.pieceArray;
+  }
 
-export function getPieceArray() {
-  return pieceArray;
-}
+  getPiece(index) {
+    return this.pieceArray[index];
+  }
 
-export function getPiece(index) {
-  return pieceArray[index];
-}
+  getCounter() {
+    return this.counter;
+  }
 
-export function getCounter() {
-  return counter;
-}
-
-export function getPieceIDArray() {
-  return pieceIDArray;
+  getPieceIDArray() {
+    return this.pieceIDArray;
+  }
 }

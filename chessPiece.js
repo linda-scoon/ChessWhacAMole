@@ -1,9 +1,9 @@
-const allowedMoves = new Map();
-
 export default class chessPiece {
+  
+  allowedMoves = new Map();
   constructor(name) {
     this.pieceName = name;
-    this.allowedMoves = 'test';
+    this.allowedMoves ;
   }
 
   getName() {

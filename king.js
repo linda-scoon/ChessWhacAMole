@@ -5,7 +5,7 @@ let hAscii = 104;
 let boardSize = 8;
 const allowedMoves = new Map();
 
-export default class King extends chessPiece {
+export class King extends chessPiece {
   constructor() {
     super("king");
 

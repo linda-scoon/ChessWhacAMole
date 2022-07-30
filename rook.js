@@ -1,14 +1,12 @@
 import chessPiece from "/chessPiece.js";
-
-let aAscii = 97;
-let hAscii = 104;
-let boardSize = 8;
-const allowedMoves = new Map();
-
 export default class Queen extends chessPiece {
+  aAscii = 97;
+  hAscii = 104;
+  boardSize = 8;
+  allowedMoves = new Map();
+
   constructor() {
     super("rook");
-
     this.img = document.createElement("img");
     this.img.draggable = true;
     this.img.id = "rook";

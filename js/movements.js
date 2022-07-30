@@ -94,7 +94,6 @@ export default class Movements {
   upRightDiag(row, col) {
     let up = row + this.step;
     let right = col.charCodeAt(0) + this.step;
-
     while (up <= this.boardSize && right <= this.hAscii) {
       let rightStr = String.fromCharCode(right);
       this.allowedMoves.push(rightStr + up);
@@ -106,7 +105,6 @@ export default class Movements {
   downRightDiag(row, col) {
     let down = row - this.step;
     let right = col.charCodeAt(0) + this.step;
-
     while (down > 0 && right <= this.hAscii) {
       let rightStr = String.fromCharCode(right);
       this.allowedMoves.push(rightStr + down);
@@ -118,7 +116,6 @@ export default class Movements {
   upLeftDiag(row, col) {
     let up = row + this.step;
     let left = col.charCodeAt(0) - this.step;
-
     while (up <= this.boardSize && left >= this.aAscii) {
       let leftStr = String.fromCharCode(left);
       this.allowedMoves.push(leftStr + up);

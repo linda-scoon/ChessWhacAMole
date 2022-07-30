@@ -1,86 +1,82 @@
 import chessPiece from "/chessPiece.js";
 
-export default class Queen extends chessPiece {
-  aAscii = 97;
-  hAscii = 104;
-  boardSize = 8;
-  allowedMoves = new Map();
-
+export default class Bishop extends chessPiece {
+  step;
   constructor() {
     super("bishop");
-
-    this.img = document.createElement("img");
-    this.img.draggable = true;
+    this.step = 1;
     this.img.id = "bishop";
     this.img.src = "img/blackBishop.webp";
-    this.row;
-    this.col;
   }
 
-  getAllowedMovesBishop() {
-    return this.allowedMoves;
-  }
+  upRightDiag(row, col) {
+    let up = row + this.step;
+    let right = col.charCodeAt(0) + this.step;
 
-  left(row, col) {
-    let sideSteps = 1;
-    //converts the letter from 'a' to 'h' (denoting column) to ASCII equivalent (numbers from 97 to 104).
-    let left = col.charCodeAt(0);
-    //  1 step left (subtraction)
-    left = left - sideSteps;
-
-    if (left >= this.aAscii) {
-      // if column is valid then position is allowed move
-      left = String.fromCharCode(left);
-      this.allowedMoves.set("left", left + row);
+    for (let i = 0; i < this.boardSize; i++) {
+      // right up
+      if (up <= this.boardSize && right <= this.hAscii) {
+        let rightStr = String.fromCharCode(right);
+        this.allowedMoves.push(rightStr + up);
+      }
+      up++;
+      right++;
     }
   }
 
-  right(row, col) {
-    let sideSteps = 1;
-    let right = col.charCodeAt(0);
-    // 1 step right (addition)
-    right = right + sideSteps;
+  downRightDiag(row, col) {
+    let down = row - this.step;
+    let right = col.charCodeAt(0) + this.step;
 
-    if (right <= this.hAscii) {
-      right = String.fromCharCode(right);
-      this.allowedMoves.set("right", right + row);
+    for (let i = 0; i < this.boardSize; i++) {
+      // right down
+      if (down > 0 && right <= this.hAscii) {
+        let rightStr = String.fromCharCode(right);
+        this.allowedMoves.push(rightStr + down);
+      }
+      down--;
+      right++;
     }
   }
 
-  down(row, col) {
-    let downSteps = 1;
-    // 1 step/rows down
-    let down = parseInt(row) - downSteps;
+  upLeftDiag(row, col) {
+    let up = row + this.step;
+    let left = col.charCodeAt(0) - this.step;
 
-    if (down > 0) {
-      this.allowedMoves.set("down", col + down);
+    for (let i = 0; i < this.boardSize; i++) {
+      // left up
+      if (up <= this.boardSize && left >= this.aAscii) {
+        let leftStr = String.fromCharCode(left);
+        this.allowedMoves.push(leftStr + up);
+      }
+      up++;
+      left--;
     }
   }
 
-  up(row, col) {
-    let upSteps = 1; // a Bishop can move 1 step upward
+  downLeftDiag(row, col) {
+    let down = row - this.step;
+    let left = col.charCodeAt(0) - this.step;
 
-    // 1 step upward (current_piece_row + add_1_row)
-    let up = parseInt(row) + upSteps;
-
-    if (up <= this.boardSize) {
-      // TRUE - if the value of UP is less than, or equal to, 8 (which is the maximum number of rows on a chessboard).
-      this.allowedMoves.set("Bishop up", up, col);
-      this.allowedMoves.set("up", col + up);
+    for (let i = 0; i < this.boardSize; i++) {
+      // left down
+      if (down > 0 && left >= this.aAscii) {
+        let leftStr = String.fromCharCode(left);
+        this.allowedMoves.push(leftStr + down);
+      }
+      down--;
+      left--;
     }
   }
 
   /**
    * Checks piece's current available moves
    */
-  checkMoves(col, row) {
-    this.allowedMoves.clear();
-    this.up(row, col);
-    this.down(row, col);
-    this.right(row, col);
-    this.left(row, col);
-
-    //pass allowed moves back to parent class
-    super.setAllowedMoves(this.getAllowedMovesBishop());
+  checkMoves(row, col) {
+    super.clearMoves();
+    this.upLeftDiag(row, col);
+    this.downLeftDiag(row, col);
+    this.upRightDiag(row, col);
+    this.downRightDiag(row, col);
   }
 }

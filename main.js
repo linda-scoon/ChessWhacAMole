@@ -44,16 +44,15 @@ function dropPiece($event) {
     let piece = document.querySelector(pieceName);
 
     //running checkmoves on the piece in order to calculate valid moves
-    pieceInArray.checkMoves(pieceInArray.col, pieceInArray.row);
+    pieceInArray.checkMoves(pieceInArray.row, pieceInArray.col);
     pieceInArray.getAllowedMoves().forEach((move) => {
       if (this.id == move) {
         if (board.target == this.id) {
           placeTarget();
         }
-
         this.appendChild(piece);
         pieceInArray.col = this.id.split("")[0];
-        pieceInArray.row = this.id.split("")[1];
+        pieceInArray.row = parseInt(this.id.split("")[1]);
         return;
       }
     });
@@ -69,8 +68,7 @@ function getCoordinate() {
 }
 
 function displayPieces() {
-  board.getPieceArray().forEach((piece, i) => {
-    //had to do this, this way so as to deconstruct the coordinates
+  board.getPieceArray().forEach((piece) => {
     let { col, row } = getCoordinate();
     piece.row = row;
     piece.col = col;

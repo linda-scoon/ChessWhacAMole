@@ -23,7 +23,8 @@ export default class Queen extends chessPiece {
 
   left(row, col) {
     let sideSteps = 1;
-    let left = col.charCodeAt(0); //converts the letter from 'a' to 'h' (denoting column) to ASCII equivalent (numbers from 97 to 104).
+    //converts the letter from 'a' to 'h' (denoting column) to ASCII equivalent (numbers from 97 to 104).
+    let left = col.charCodeAt(0);
     //  1 step left (subtraction)
     left = left - sideSteps;
 
@@ -74,16 +75,9 @@ export default class Queen extends chessPiece {
    */
   checkMoves(col, row) {
     this.allowedMoves.clear();
-    //up
     this.up(row, col);
-
-    //down
     this.down(row, col);
-
-    //right
     this.right(row, col);
-
-    // left
     this.left(row, col);
 
     //pass allowed moves back to parent class

@@ -75,17 +75,10 @@ export default class Queen extends chessPiece {
    * Checks piece's current available moves
    */
   checkMoves(col, row) {
-       this.allowedMoves.clear();
-     //up
+    this.allowedMoves.clear();
     this.up(row, col);
-
-    //down
     this.down(row, col);
-
-    //right
     this.right(row, col);
-
-    // left
     this.left(row, col);
 
     //pass allowed moves back to parent class

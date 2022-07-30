@@ -75,16 +75,9 @@ export default class King extends chessPiece {
    */
   checkMoves(col, row) {
     this.allowedMoves.clear();
-    //up
     this.up(row, col);
-
-    //down
     this.down(row, col);
-
-    //right
     this.right(row, col);
-
-    // left
     this.left(row, col);
 
     //pass allowed moves back to parent class

@@ -17,27 +17,6 @@ export default class Pawn extends chessPiece {
     this.col;
   }
 
-  /**
-   * Checks piece's current available moves
-   */
-  checkMoves(col, row) {
-    this.allowedMoves.clear();
-
-    //up REMOVED TEMPORARILY AS BLACK PAWN CAN ONLY MOVE DOWN
-    //this.up(row, col);
-
-    //down
-    this.down(row, col);
-
-    //right REMOVED TEMPORARILY AS BLACK PAWN CAN ONLY MOVE DOWN
-    //this.right(row, col);
-
-    // left
-    //this.left(row, col);
-    //pass allowed moves back to parent class
-    super.setAllowedMoves(this.getAllowedMovesPawn());
-  }
-
   getAllowedMovesPawn() {
     return this.allowedMoves;
   }
@@ -96,5 +75,26 @@ export default class Pawn extends chessPiece {
 
   getPawnName() {
     return "pawn";
+  }
+
+  /**
+   * Checks piece's current available moves
+   */
+  checkMoves(col, row) {
+    this.allowedMoves.clear();
+
+    //up REMOVED TEMPORARILY AS BLACK PAWN CAN ONLY MOVE DOWN
+    //this.up(row, col);
+
+    //down
+    this.down(row, col);
+
+    //right REMOVED TEMPORARILY AS BLACK PAWN CAN ONLY MOVE DOWN
+    //this.right(row, col);
+
+    // left
+    //this.left(row, col);
+    //pass allowed moves back to parent class
+    super.setAllowedMoves(this.getAllowedMovesPawn());
   }
 }

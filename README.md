@@ -2,7 +2,7 @@
 
 This is a game just like whac a mole but with chess pieces. The chess piece has to be moved to the star following the movement rules of the chess piece.
 
-# Calculating allowable moves on the chess board requires converting letters/columns to ASCII. Explanation below...
+### Calculating allowable moves on the chess board requires converting letters/columns to ASCII. Explanation below...
 
 Firstly, a chess board is an 8x8 board, typically denoted with rows being numbered from 1 to 8, and columns labelled under letters from a to h.
 To move a piece on the board, we would denote the name of the piece and where it is moving to. King to e5, for example.

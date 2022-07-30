@@ -1,5 +1,5 @@
-import chessPiece from "/chessPiece.js";
-import Movements from "/movements.js";
+import chessPiece from "./chessPiece.js";
+import Movements from "./movements.js";
 
 export default class Pawn extends chessPiece {
   constructor() {
@@ -19,7 +19,7 @@ export default class Pawn extends chessPiece {
     this.movements.upOneStep(row, col);
     this.movements.upRight(row, col);
     this.movements.upLeft(row, col);
-     this.allowedMoves = this.movements.getAllowedMoves();
+    this.allowedMoves = this.movements.getAllowedMoves();
     this.movements.reset();
   }
 }

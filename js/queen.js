@@ -1,5 +1,5 @@
-import chessPiece from "/chessPiece.js";
-import Movements from "/movements.js";
+import chessPiece from "./chessPiece.js";
+import Movements from "./movements.js";
 
 export default class Queen extends chessPiece {
   constructor() {
@@ -16,11 +16,11 @@ export default class Queen extends chessPiece {
    */
   checkMoves(row, col) {
     super.clearMoves();
-    this.movements.knightUp(row, col);
-    this.movements.knightDown(row, col);
-    this.movements.knightRight(row, col);
-    this.movements.knightLeft(row, col);
-     this.allowedMoves = this.movements.getAllowedMoves();
+    this.movements.upRightDiag(row, col);
+    this.movements.downRightDiag(row, col);
+    this.movements.upLeftDiag(row, col);
+    this.movements.downLeftDiag(row, col);
+    this.allowedMoves = this.movements.getAllowedMoves();
     this.movements.reset();
   }
 }

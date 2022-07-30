@@ -10,8 +10,8 @@ export default class Movements {
   getAllowedMoves() {
     return this.allowedMoves;
   }
-  reset(){
-    this.allowedMoves=[];
+  reset() {
+    this.allowedMoves = [];
   }
 
   leftOneStep(row, col) {
@@ -204,32 +204,31 @@ export default class Movements {
    * (1) a knight's upward movement would require going 2 rows upwards
    * (2) it would also include moving a step/column to either the left or right direction.
    * (3) 2 steps upward (current_piece_row + add_2_rows)
-   * (4) 1 step to the right (current_piece_row + add_1_col)
-   * (5) we convert letters a to h into ASCII equivalent and pass to 'right' letiable.
-   * (6) add 1 to column ASCII value.
-   * (7) 1 step to the left (current_piece_row + minus_1_col)
-   * (8) minus 1 from column ASCII value
-   * (9) up <= this.boardSize is TRUE - if the value of UP is less than, or equal to, 8
+   * (4) we convert letters a to h into ASCII equivalent and pass to 'right' letiable.
+   * (5) 1 step to the right (current_piece_row + add_1_col)
+   * (6) then add 1 to column ASCII value.
+   * (7) This results in, 1 step to the left (current_piece_row + minus_1_col)
+   * (9) (up <= this.boardSize) is TRUE - if the value of UP is less than, or equal to, 8
    *     (which is the maximum number of rows on a chessboard).
-   * (10) left >= this.aAscii is TRUE - if left greater than or equal to 97 (a in ASCII)
-   * (11) Turning left back into a string
-   * (12) Add to list of allowed moves
-   * (13) right <= this.hAscii is TRUE - if right less than or equal to 104 (h in ASCII)
+   * (10) (left >= this.aAscii) is TRUE - if left greater than or equal to 97 (a in ASCII)
+   * (11) After the calculation left is turned back into a string
+   *      Then added to list of allowed moves
+   * (13) And for the right side (right <= this.hAscii) is TRUE - if right is less than or equal to 104 (h in ASCII)
    * @param {number} row
    * @param {string} col
    */
   knightUp(row, col) {
-    let verticalSteps = 2;
-    let horizontalSteps = 1;
-    let up = row + verticalSteps;
-    let right = col.charCodeAt(0);
-    right = right + horizontalSteps;
-    let left = col.charCodeAt(0);
-    left = left - horizontalSteps;
+    /*1*/ let verticalSteps = 2;
+    /*2*/ let horizontalSteps = 1;
+    /*3*/ let up = row + verticalSteps;
+    /*4*/ let right = col.charCodeAt(0);
+    /*5*/ right = right + horizontalSteps;
+    /*6*/ let left = col.charCodeAt(0);
+    /*7*/ left = left - horizontalSteps;
 
     if (up <= this.boardSize) {
       if (left >= this.aAscii) {
-        left = String.fromCharCode(left);
+        /*11*/ left = String.fromCharCode(left);
         this.allowedMoves.push(left + up);
       }
       if (right <= this.hAscii) {

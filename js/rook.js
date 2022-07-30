@@ -1,11 +1,10 @@
-import Movements from "/movements.js";
-import chessPiece from "/chessPiece.js";
-
-export default class King extends chessPiece {
+import chessPiece from "./chessPiece.js";
+import Movements from "./movements.js";
+export default class Rook extends chessPiece {
   constructor() {
-    super("king");
-    this.img.id = "king";
-    this.img.src = "img/blackKing.webp";
+    super("rook");
+    this.img.id = "rook";
+    this.img.src = "img/blackRook.webp";
     this.movements = new Movements();
   }
 
@@ -20,10 +19,6 @@ export default class King extends chessPiece {
     this.movements.rightOneStep(row, col);
     this.movements.downOneStep(row, col);
     this.movements.upOneStep(row, col);
-    this.movements.upRight(row, col);
-    this.movements.downLeft(row, col);
-    this.movements.downRight(row, col);
-    this.movements.upLeft(row, col);
     this.allowedMoves = this.movements.getAllowedMoves();
     this.movements.reset();
   }

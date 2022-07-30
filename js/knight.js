@@ -1,5 +1,5 @@
-import Movements from "/movements.js";
-import chessPiece from "/chessPiece.js";
+import Movements from "./movements.js";
+import chessPiece from "./chessPiece.js";
 
 export default class Knight extends chessPiece {
   movements;

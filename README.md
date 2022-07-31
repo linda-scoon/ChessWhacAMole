@@ -15,8 +15,8 @@ We are only adding/subtracting from the second part of the chess piece coordinat
 
 That is nice and easy!
 
-However! If we were to instead move a rook from a1 to b1, would have to calculate the difference between a and b...
-So, we instead use convert this to ASCII which represents the characters 'a' and 'b' as numbers!
+However! If we were to instead move a rook from a1 to b1, we would have to calculate the difference between a and b...
+So, we instead convert this to ASCII which represents the characters 'a' and 'b' as numbers!
 
 In fact, we can use ASCII to convert all of the 8 characters on a chessboard, from a to h. How exciting!
 

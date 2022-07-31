@@ -1,17 +1,14 @@
 export default class chessPiece {
-  
-  allowedMoves = new Map();
+
   constructor(name) {
+    this.img = document.createElement("img");
+    this.img.draggable = true;
     this.pieceName = name;
-    this.allowedMoves ;
+    this.allowedMoves = [];
   }
 
   getName() {
     return this.pieceName;
-  }
-
-  setName(newName) {
-    this.pieceName = newName;
   }
 
   setAllowedMoves(allowedMoves) {
@@ -20,5 +17,9 @@ export default class chessPiece {
 
   getAllowedMoves() {
     return this.allowedMoves;
+  }
+
+  clearMoves() {
+    this.allowedMoves = [];
   }
 }

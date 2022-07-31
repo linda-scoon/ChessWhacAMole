@@ -20,6 +20,8 @@ export default class Queen extends chessPiece {
     this.movements.downRightDiag(row, col);
     this.movements.upLeftDiag(row, col);
     this.movements.downLeftDiag(row, col);
+    this.movements.horizontal(row, col);
+    this.movements.vertical(row, col);
     this.allowedMoves = this.movements.getAllowedMoves();
     this.movements.reset();
   }

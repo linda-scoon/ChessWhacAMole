@@ -3,7 +3,7 @@ export default class Movements {
     this.aAscii = 97;
     this.hAscii = 104;
     this.boardSize = 8;
-    this.step = 1;
+    this.oneStep = 1;
     this.allowedMoves = [];
   }
 
@@ -14,9 +14,42 @@ export default class Movements {
     this.allowedMoves = [];
   }
 
+  horizontal(row, col) {
+    let left = col.charCodeAt(0);
+    left = left - this.oneStep;
+    let right = col.charCodeAt(0);
+    right = right + this.oneStep;
+
+    while (left >= this.aAscii) {
+      let leftStr = String.fromCharCode(left);
+      this.allowedMoves.push(leftStr + row);
+      left--;
+    }
+
+    while (right <= this.hAscii) {
+      let rightStr = String.fromCharCode(right);
+      this.allowedMoves.push(rightStr + row);
+      right++;
+    }
+  }
+
+  vertical(row, col) {
+    let down = row - this.oneStep;
+    let up = row + this.oneStep;
+    while (down > 0) {
+      this.allowedMoves.push(col + down);
+      down--;
+    }
+
+    while (up <= this.boardSize) {
+      this.allowedMoves.push(col + up);
+      up++;
+    }
+  }
+
   leftOneStep(row, col) {
     let left = col.charCodeAt(0);
-    left = left - this.step;
+    left = left - this.oneStep;
 
     if (left >= this.aAscii) {
       left = String.fromCharCode(left);
@@ -26,7 +59,7 @@ export default class Movements {
 
   rightOneStep(row, col) {
     let right = col.charCodeAt(0);
-    right = right + this.step;
+    right = right + this.oneStep;
 
     if (right <= this.hAscii) {
       right = String.fromCharCode(right);
@@ -35,7 +68,7 @@ export default class Movements {
   }
 
   downOneStep(row, col) {
-    let down = row - this.step;
+    let down = row - this.oneStep;
 
     if (down > 0) {
       this.allowedMoves.push(col + down);
@@ -43,57 +76,60 @@ export default class Movements {
   }
 
   upOneStep(row, col) {
-    let up = row + this.step;
+    let up = row + this.oneStep;
 
     if (up <= this.boardSize) {
-      this.allowedMoves.push(up, col);
       this.allowedMoves.push(col + up);
     }
   }
 
   upLeft(row, col) {
+    let up = row + this.oneStep;
     let left = col.charCodeAt(0);
-    left = left - this.step;
+    left = left - this.oneStep;
 
-    if (left >= this.aAscii) {
-      left = String.fromCharCode(left);
-      this.allowedMoves.push(left + row);
-    }
-  }
-
-  upRight(row, col) {
-    let right = col.charCodeAt(0);
-    right = right + this.step;
-
-    if (right <= this.hAscii) {
-      right = String.fromCharCode(right);
-      this.allowedMoves.push(right + row);
-    }
-  }
-
-  downLeft(row, col) {
-    let left = col.charCodeAt(0);
-    left = left - this.step;
-
-    if (left >= this.aAscii) {
-      left = String.fromCharCode(left);
-      this.allowedMoves.push(left + row);
+    if (left >= this.aAscii && up <= this.boardSize) {
+      let leftStr = String.fromCharCode(left);
+      this.allowedMoves.push(leftStr + up);
     }
   }
 
   downRight(row, col) {
+    let down = row - this.oneStep;
     let right = col.charCodeAt(0);
-    right = right + this.step;
+    right = right + this.oneStep;
 
-    if (right <= this.hAscii) {
-      right = String.fromCharCode(right);
-      this.allowedMoves.push(right + row);
+    if (right <= this.hAscii && down > 0) {
+      let rightStr = String.fromCharCode(right);
+      this.allowedMoves.push(rightStr + down);
+    }
+  }
+
+  downLeft(row, col) {
+    let down = row - this.oneStep;
+    let left = col.charCodeAt(0);
+    left = left - this.oneStep;
+
+    if (left >= this.aAscii && down > 0) {
+      let leftStr = String.fromCharCode(left);
+      this.allowedMoves.push(leftStr + down);
+    }
+  }
+
+  upRight(row, col) {
+    let up = row + this.oneStep;
+    let right = col.charCodeAt(0);
+    right = right + this.oneStep;
+
+    if (right <= this.hAscii && up <= this.boardSize) {
+      let rightStr = String.fromCharCode(right);
+      this.allowedMoves.push(rightStr + up);
     }
   }
 
   upRightDiag(row, col) {
-    let up = row + this.step;
-    let right = col.charCodeAt(0) + this.step;
+    let up = row + this.oneStep;
+    let right = col.charCodeAt(0) + this.oneStep;
     while (up <= this.boardSize && right <= this.hAscii) {
       let rightStr = String.fromCharCode(right);
       this.allowedMoves.push(rightStr + up);
@@ -103,8 +139,8 @@ export default class Movements {
   }
 
   downRightDiag(row, col) {
-    let down = row - this.step;
-    let right = col.charCodeAt(0) + this.step;
+    let down = row - this.oneStep;
+    let right = col.charCodeAt(0) + this.oneStep;
     while (down > 0 && right <= this.hAscii) {
       let rightStr = String.fromCharCode(right);
       this.allowedMoves.push(rightStr + down);
@@ -114,8 +150,8 @@ export default class Movements {
   }
 
   upLeftDiag(row, col) {
-    let up = row + this.step;
-    let left = col.charCodeAt(0) - this.step;
+    let up = row + this.oneStep;
+    let left = col.charCodeAt(0) - this.oneStep;
     while (up <= this.boardSize && left >= this.aAscii) {
       let leftStr = String.fromCharCode(left);
       this.allowedMoves.push(leftStr + up);
@@ -125,8 +161,8 @@ export default class Movements {
   }
 
   downLeftDiag(row, col) {
-    let down = row - this.step;
-    let left = col.charCodeAt(0) - this.step;
+    let down = row - this.oneStep;
+    let left = col.charCodeAt(0) - this.oneStep;
     while (down > 0 && left >= this.aAscii) {
       let leftStr = String.fromCharCode(left);
       this.allowedMoves.push(leftStr + down);

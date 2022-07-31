@@ -15,10 +15,8 @@ export default class Rook extends chessPiece {
    */
   checkMoves(row, col) {
     super.clearMoves();
-    this.movements.leftOneStep(row, col);
-    this.movements.rightOneStep(row, col);
-    this.movements.downOneStep(row, col);
-    this.movements.upOneStep(row, col);
+    this.movements.horizontal(row, col);
+    this.movements.vertical(row, col);
     this.allowedMoves = this.movements.getAllowedMoves();
     this.movements.reset();
   }

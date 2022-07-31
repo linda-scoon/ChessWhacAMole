@@ -33,7 +33,6 @@ board.addPiece(bishop);
 function startGame() {
   placeTarget();
   document.querySelectorAll(".col").forEach((square) => {
-    square.addEventListener("dragover", dropPiece);
     square.addEventListener("click", dropPiece);
   });
   displayPieces();
